@@ -1,38 +1,11 @@
 import {initState} from './books'
-
-
-// export default function Cards({ title, author, isbn, id }) {
-//   return (
-//     <div className="card">
-//       <h2>{title}</h2>
-//       <div className="info">
-//         <p>المؤلف: {author}</p>
-//         <p>رقم ISBN: {isbn}</p>
-//         <p>الرقم التعريفي: {id}</p>
-//       </div>
-//     </div>
-//   );
-// }
-// {/* <Route
-// path="/"
-// element={
-//   <div className="app">
-//     {initState.books.map((book) => (
-//       <Cards
-//         title={book.title}
-//         author={book.author}
-//         isbn={book.isbn}
-//         id={book.id}
-//       />
-//     ))}
-//   </div>
-// }
-// /> */}
-
+import Hero from './Hero'
 
 
 export default function Cards(){
   return(
+    <>
+    <Hero/>
       <div className="app">
       <div className="card-container">
         {initState.books.map((element) => (
@@ -47,5 +20,43 @@ export default function Cards(){
         ))}
       </div>
     </div>
+    </>
   );
+
+
+
+
+
+
+
+  
+  // export default function Cards({ title, author, isbn, id }) {
+  //   return (
+  //     <div className="card">
+  //       <h2>{title}</h2>
+  //       <div className="info">
+  //         <p>المؤلف: {author}</p>
+  //         <p>رقم ISBN: {isbn}</p>
+  //         <p>الرقم التعريفي: {id}</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  // {/* <Route
+  // path="/"
+  // element={
+  //   <div className="app">
+  //     {initState.books.map((book) => (
+  //       <Cards
+  //         title={book.title}
+  //         author={book.author}
+  //         isbn={book.isbn}
+  //         id={book.id}
+  //       />
+  //     ))}
+  //   </div>
+  // }
+  // /> */}
+  
+  
 }

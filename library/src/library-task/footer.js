@@ -7,9 +7,7 @@ export default function Footer(){
             color: "white",
             textAlign: "center",
             padding: "10px 20px",
-            // position: "relative",
             bottom: "0",
-            width: "100%",
             marginTop: "60px"
           
           

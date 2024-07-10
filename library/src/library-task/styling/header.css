@@ -1,39 +1,67 @@
 .header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000; 
-  }
-  
-  
-  .header h1 {
-    margin: 0;
-  }
-  
-  .header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header nav ul li {
-    margin: 0;
-  }
-  
-  .header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .header nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header h1 {
+  margin: 0;
+  margin-left: 20px;
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+.login-nav{
+  margin: 0;
+  padding: 0;
+  margin-right: 20px;
+}
+
+.main-nav li,
+.login-nav li {
+  margin: 0;
+}
+
+.main-nav li a,
+.login-nav li button {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main-nav li a:hover {
+  text-decoration: underline;
+}
+
+.login-button,
+.logout-button {
+  padding: 8px 16px;
+  background-color: #555;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #777;
+}
+
+.logout-button:hover {
+  background-color: #f00; /* لون التغيير عندما يتم النقر  */
+}
