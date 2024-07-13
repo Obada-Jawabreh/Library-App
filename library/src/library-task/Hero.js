@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="hero-content">
-        <h1>Welcome {user?user.name : <></>} , in Our Library</h1>
+        <h1>Welcome {user?user.name : null} , in Our Library</h1>
         <p>Discover a world of knowledge and adventure</p>
         <a href="#books" className="btn">Explore Books</a>
       </div>

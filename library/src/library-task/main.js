@@ -1,25 +1,13 @@
 import {initState} from './books'
 import Hero from './Hero'
-
+import { useState, useEffect } from 'react'; 
+import axios from "axios"
 
 export default function Cards(){
+
   return(
     <>
     <Hero/>
-      <div className="app">
-      <div className="card-container">
-        {initState.books.map((element) => (
-          <div className="card" >
-            <h2>{element.title}</h2>
-            <div className="info">
-              <p>المؤلف: {element.author}</p>
-              <p>رقم ISBN: {element.isbn}</p>
-              <p>الرقم التعريفي: {element.id}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
     </>
   );
 

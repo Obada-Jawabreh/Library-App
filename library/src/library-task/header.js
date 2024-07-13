@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 function Header() {
   const user = JSON.parse(localStorage.getItem('user'));
-  let navigate = useNavigate();
-
+   let navigate = useNavigate();
   let logout = () => {
     localStorage.removeItem('user');
-    navigate('/');
+    
+     navigate('/');
   };
 
   let login = () => {
@@ -24,6 +24,7 @@ function Header() {
           <li><Link to="/">الرئيسية</Link></li>
           <li><Link to="/about">من نحن</Link></li>
           <li><Link to="/contact">اتصل بنا</Link></li>
+          <li><Link to="/catalog">كتالوج الكتب</Link></li>
         </ul>
       </nav>
         <ul className="login-nav">

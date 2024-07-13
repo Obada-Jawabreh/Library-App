@@ -10,6 +10,7 @@ import './library-task/styling/contact.css'
 import './library-task/styling/about.css'
 import ContactUsPage from './library-task/contact'
 import AboutUsPage from './library-task/about'
+import Books from './library-task/bookCatalog'
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
   <main>
 
    <Routes> 
-      <Route path="/" element={<Cards/>}/>
+    <Route path="/" element={<Cards/>}/>
     <Route path="/login" element={<SiginUp/>}/>
     <Route path="/about" element={<AboutUsPage/>}/>
     <Route path='/contact' element={<ContactUsPage/>}/>
+    <Route path='/catalog' element={<Books/>}/>
   </Routes>
   </main>
 

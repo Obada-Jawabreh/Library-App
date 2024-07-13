@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,7 +9,6 @@ export default function SiginUp(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(userData);
         localStorage.setItem('user', JSON.stringify(userData));
         navigate('/');
       };
@@ -26,7 +24,7 @@ export default function SiginUp(){
                 setData({...userData , name:e.target.value })
               }}/>
             </div>
-          
+            
             <div className="input-group">
               <label htmlFor="email">البريد الإلكتروني:</label>
               <input type="email" id="email"  value={userData.email} onChange={(e) =>
