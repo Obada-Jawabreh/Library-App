@@ -172,7 +172,7 @@ function Books() {
       </form>
 
       {/* Edit Form */}
-      {isEditing && (
+      {isEditing ? (
         <form
           onSubmit={Edit}
           className="max-w-lg mx-auto p-4 bg-white shadow-md rounded mt-8"
@@ -248,7 +248,7 @@ function Books() {
             </button>
           </div>
         </form>
-      )}
+      ) : null}
     </>
   );
 }
