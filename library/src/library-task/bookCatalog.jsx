@@ -21,6 +21,10 @@ function Books() {
 
   let [isEditing, setIsEditing] = useState(false);
 
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(6); // Number of items per page
+
   //  ***********************************GET BOOKs
   async function fetchBooks() {
     const response = await axios.get(`${dbURL}/books.json`);
@@ -52,14 +56,7 @@ function Books() {
 
   //  ***********************************DELETE BOOKs
   async function deleteBook(id) {
-    await axios
-      .patch(`${dbURL}/books/${id}.json`, { boolen: false })
-      .then(function (response) {
-        console.log("Soft deleted book with ID: done ", id);
-      })
-      .catch(function (error) {
-        console.log("d", error);
-      });
+    await axios.patch(`${dbURL}/books/${id}.json`, { boolen: false });
     fetchBooks();
   }
 
@@ -71,16 +68,24 @@ function Books() {
     fetchBooks();
   }
 
-  function startEditing(book) {
-    setEditData(book);
+  function StartEditing(book) {
     setIsEditing(true);
+    setEditData({ ...book });
   }
+
+  // pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentBooks = books.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <>
+      {/* cards */}
       <div className="app">
         <div className="card-container">
-          {books.map((book) =>
+          {currentBooks.map((book) =>
             book.boolen ? (
               <div className="card" key={book.id}>
                 <h2>{book.title}</h2>
@@ -88,18 +93,18 @@ function Books() {
                   <p>المؤلف: {book.author}</p>
                   <p>رقم ISBN: {book.isbn}</p>
                   <p>الرقم التعريفي: {book.id}</p>
-                  <div className="flex gap-4">
+                  <div className="mt-4 flex justify-between items-center">
                     <button
                       onClick={() => deleteBook(book.id)}
-                      className="bg-yellow-700 w-20 hover:bg-red-600"
+                      className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                     >
                       Delete
                     </button>
                     <button
-                      className="bg-yellow-700 w-20 hover:bg-red-600"
-                      onClick={() => startEditing(book)}
+                      onClick={() => StartEditing(book)}
+                      className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
                     >
-                      Update
+                      Edit
                     </button>
                   </div>
                 </div>
@@ -109,26 +114,30 @@ function Books() {
         </div>
       </div>
 
+      {/* Pagination */}
+      <div className="flex justify-center mt-8">
+        {Array.from({ length: Math.ceil(books.length / itemsPerPage) }).map(
+          (_, index) => (
+            <button
+              key={index}
+              onClick={() => paginate(index + 1)}
+              className={`mx-2 px-4 py-2 rounded-md ${
+                currentPage === index + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
+      </div>
+
+      {/* add form */}
       <form
         onSubmit={addBooks}
         className="max-w-lg mx-auto p-4 bg-white shadow-md rounded"
       >
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="author"
-          >
-            Author:
-          </label>
-          <input
-            type="text"
-            id="author"
-            value={addBook.author}
-            onChange={(e) => setBook({ ...addBook, author: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -141,6 +150,22 @@ function Books() {
             id="title"
             value={addBook.title}
             onChange={(e) => setBook({ ...addBook, title: e.target.value })}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="author"
+          >
+            Author:
+          </label>
+          <input
+            type="text"
+            id="author"
+            value={addBook.author}
+            onChange={(e) => setBook({ ...addBook, author: e.target.value })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
